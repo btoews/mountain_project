@@ -16,11 +16,11 @@ describe MountainProject::Node do
     end
 
     it "maps keys" do
-      expect(subject.from_hash(:Foo => 1).foo).to eq(1)
+      expect(subject.from_hash("Foo" => 1).foo).to eq(1)
     end
 
     it "massages values" do
-      expect(subject.from_hash(:bar => "asdf").bar).to eq("fdsa")
+      expect(subject.from_hash("bar" => "asdf").bar).to eq("fdsa")
     end
   end
 
