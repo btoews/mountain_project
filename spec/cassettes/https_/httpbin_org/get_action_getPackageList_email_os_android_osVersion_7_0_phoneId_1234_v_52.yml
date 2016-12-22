@@ -1,0 +1,40 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://httpbin.org/get?action=getPackageList&email=&os=android&osVersion=7.0&phoneId=1234&v=52
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Mountain Project 3.13
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 22 Dec 2016 00:35:03 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '386'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+    body:
+      encoding: ASCII-8BIT
+      string: "{\n  \"args\": {\n    \"action\": \"getPackageList\", \n    \"email\":
+        \"\", \n    \"os\": \"android\", \n    \"osVersion\": \"7.0\", \n    \"phoneId\":
+        \"1234\", \n    \"v\": \"52\"\n  }, \n  \"headers\": {\n    \"Host\": \"httpbin.org\",
+        \n    \"User-Agent\": \"Mountain Project 3.13\"\n  }, \n  \"origin\": \"75.171.214.77\",
+        \n  \"url\": \"https://httpbin.org/get?action=getPackageList&email=&os=android&osVersion=7.0&phoneId=1234&v=52\"\n}\n"
+    http_version: 
+  recorded_at: Thu, 22 Dec 2016 00:35:03 GMT
+recorded_with: VCR 3.0.3

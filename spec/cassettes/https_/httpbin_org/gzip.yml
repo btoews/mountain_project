@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://httpbin.org/gzip
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.10.0
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 20 Dec 2016 18:23:09 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '146'
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAA13WVgC/yWNSw4CIRBE95yC9Fo7YDQk7lz4OYAeAEMHWAgE0EQnc3eb
+        mWW9et01CSnB/2Ip5OAoe33TRg4WyDqqjdnEkcEtt84JQu/lGRPm6mFRuXs0
+        qtuTp7QYF1uts1/5UagVKmBnXp++qIc8duB6vq/XkGv0MQ1mDqiNxp3eozEg
+        ZvEHGymyUJ0AAAA=
+    http_version: 
+  recorded_at: Tue, 20 Dec 2016 18:23:09 GMT
+recorded_with: VCR 3.0.3

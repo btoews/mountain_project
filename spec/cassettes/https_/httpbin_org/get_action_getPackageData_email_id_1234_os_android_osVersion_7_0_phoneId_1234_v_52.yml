@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://httpbin.org/get?action=getPackageData&email=&id=1234&os=android&osVersion=7.0&phoneId=1234&v=52
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Range:
+      - bytes=0-
+      Accept-Encoding:
+      - gzip
+      User-Agent:
+      - Dalvik/2.1.0 (Linux; U; Android 7.0; Nexus 5X Build/N5D91L)
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 22 Dec 2016 00:43:07 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '509'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+    body:
+      encoding: ASCII-8BIT
+      string: "{\n  \"args\": {\n    \"action\": \"getPackageData\", \n    \"email\":
+        \"\", \n    \"id\": \"1234\", \n    \"os\": \"android\", \n    \"osVersion\":
+        \"7.0\", \n    \"phoneId\": \"1234\", \n    \"v\": \"52\"\n  }, \n  \"headers\":
+        {\n    \"Accept-Encoding\": \"gzip\", \n    \"Host\": \"httpbin.org\", \n
+        \   \"Range\": \"bytes=0-\", \n    \"User-Agent\": \"Dalvik/2.1.0 (Linux;
+        U; Android 7.0; Nexus 5X Build/N5D91L)\"\n  }, \n  \"origin\": \"75.171.214.77\",
+        \n  \"url\": \"https://httpbin.org/get?action=getPackageData&email=&id=1234&os=android&osVersion=7.0&phoneId=1234&v=52\"\n}\n"
+    http_version: 
+  recorded_at: Thu, 22 Dec 2016 00:43:07 GMT
+recorded_with: VCR 3.0.3

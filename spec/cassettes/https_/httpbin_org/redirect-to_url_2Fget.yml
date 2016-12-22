@@ -1,0 +1,38 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://httpbin.org/redirect-to?url=%2Fget
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.10.0
+  response:
+    status:
+      code: 302
+      message: 
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 20 Dec 2016 18:23:09 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Content-Length:
+      - '0'
+      Connection:
+      - keep-alive
+      Location:
+      - "/get"
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+    body:
+      encoding: ASCII-8BIT
+      string: ''
+    http_version: 
+  recorded_at: Tue, 20 Dec 2016 18:23:09 GMT
+recorded_with: VCR 3.0.3
