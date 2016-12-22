@@ -23,6 +23,7 @@ $ bin/mp-shell
 #### Searching for packages
 
 ```
+$ bin/mp-shell
 mp-shell> packages 'lander'
 Wyoming → Lander Area → 110136004
 ```
@@ -30,6 +31,7 @@ Wyoming → Lander Area → 110136004
 #### Listing all packages
 
 ```
+$ bin/mp-shell
 mp-shell> packages
 International
   108057610 — Albania
