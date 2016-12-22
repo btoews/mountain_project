@@ -43,20 +43,12 @@ class MountainProject::Node < Struct
   # kwargs - Optional keyword arguments.
   #
   # Returns a Node instance.
-  def self.from_hash(hash, kwargs={})
+  def self.from_hash(hash)
     values = members.map do |key|
       key = mappings.fetch(key, key)
-      value = hash.fetch(key,
-        hash.fetch(key.to_s,
-          kwargs.fetch(key,
-            kwargs.fetch(key.to_s,
-              nil
-            )
-          )
-        )
-      )
+      value = hash[key.to_s]
 
-      if value.nil? || massages[key].nil?
+      if value.nil? || !massages.key?(key)
         value
       else
         massages[key].call(value)

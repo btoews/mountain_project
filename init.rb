@@ -48,3 +48,8 @@ end
 def download(id)
   session.download_package(id)
 end
+
+puts "Loading data..."
+rsize = routes.size
+asize = areas.size - rsize
+puts "Loaded #{asize} areas and #{rsize} routes"

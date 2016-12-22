@@ -27,8 +27,6 @@ class MountainProject::Rating::Grade
   end
 
   def <=>(other)
-    other = system[other] if other.is_a?(String)
-
     unless other.is_a?(MountainProject::Rating::Grade) && system == other.system
       raise MountainProject::InvalidComparisonError
     end

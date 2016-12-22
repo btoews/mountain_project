@@ -16,6 +16,10 @@ class MountainProject::Selection
     @selected_node_ids = selected_node_ids || Set.new(@nodes_by_id.keys)
   end
 
+  def size
+    selected_node_ids.size
+  end
+
   # Lookup a subtree or subselection.
   #
   # conditions - If String, lookup highest subtree with this title. If Regexp,
@@ -25,8 +29,8 @@ class MountainProject::Selection
   # Returns a Selection instance.
   def [](conditions)
     case conditions
-    when String, Regexp
-      subtree_where(title: conditions)
+    when String
+      subtree_with_title(conditions)
     when Hash
       where(conditions)
     else
@@ -183,46 +187,18 @@ class MountainProject::Selection
   # conditions - A Hash of conditions (See Node#match?).
   #
   # Returns a Selection instance.
-  def subtree_where(conditions)
-    breadth_traverse do |id, subtree|
-      node = nodes_by_id[id]
-      if node.match?(conditions)
-        return self.class.new(
-          nodes_by_id: nodes_by_id,
-          selected_node_ids: flatten_tree(subtree)
-        )
-      end
-    end
-  end
+  def subtree_with_title(title)
+    new_root = selected_nodes.select do |node|
+      node.title == title
+    end.sort_by do |node|
+      with_ancestors(node.id).size
+    end.first
 
-  # Traverse the tree, breadth first.
-  #
-  # Returns nothing. Yields [Node, Hash] for each selected Node.
-  def breadth_traverse
-    next_trees = [tree]
-
-    while next_trees.any? do
-      trees = next_trees
-      next_trees = []
-
-      trees.each do |t|
-        t.each do |id, nodes|
-          yield([id, nodes])
-          next_trees << nodes
-        end
-      end
-    end
-  end
-
-  # Get all the ids from a tree Hash.
-  #
-  # subtree - A tree Hash.
-  #
-  # Returns a Set of Node IDs.
-  def flatten_tree(subtree)
-    subtree.reduce(Set.new) do |ids, (id, subsubtree)|
-      ids.add(id)
-      ids | flatten_tree(subsubtree)
+    if new_root
+      return self.class.new(
+        nodes_by_id: nodes_by_id,
+        selected_node_ids: Set.new(with_descendants(new_root.id))
+      )
     end
   end
 
@@ -243,22 +219,25 @@ class MountainProject::Selection
 
     nodes.each do |node|
       loop do
-        hash[node.id] ||= {}
-        if hash.key?(node.parent_id)
+        id = node.id
+        parent_id = node.parent_id
+
+        hash[id] ||= {}
+        if hash.key?(parent_id)
           # Another loop has already added our parent. Add ourself to its hash
           # and break early.
-          hash[node.parent_id][node.id] = hash[node.id]
+          hash[parent_id][id] = hash[id]
           break
         else
-          if selected_node_ids.include?(node.parent_id)
+          if selected_node_ids.include?(parent_id)
             # Our parent is a selected node. Add a hash for it and add ourself
             # to that. Keep looping to add our parent's parent.
-            hash[node.parent_id] = {}
-            hash[node.parent_id][node.id] = hash[node.id]
-            node = nodes_by_id[node.parent_id]
+            hash[parent_id] = {}
+            hash[parent_id][id] = hash[id]
+            node = nodes_by_id[parent_id]
           else
             # Our parent isn't selected, so we must be a root.
-            roots.add(node.id)
+            roots.add(id)
             break
           end
         end
@@ -266,6 +245,37 @@ class MountainProject::Selection
     end
 
     hash.keep_if { |k, _| roots.include?(k) }
+  end
+
+  def node_ids_by_parent_id
+    @node_ids_by_parent_id ||= selected_nodes.each_with_object({}) do |node, hash|
+      children = hash[node.parent_id] ||= []
+      children << node.id
+    end
+  end
+
+  # Get the descendants of a given node.
+  #
+  # id - The ID of the Node.
+  #
+  # Returns a Set including the provided ID and all its descendants' IDs.
+  def with_descendants(id)
+    next_ids = [id]
+    descendants = [id]
+
+    while next_ids.any?
+      parents = next_ids
+      next_ids = []
+
+      parents.each do |pid|
+        if children = node_ids_by_parent_id[pid]
+          descendants.concat(children)
+          next_ids.concat(children)
+        end
+      end
+    end
+
+    descendants
   end
 
   # Get the ancestors of a given node.

@@ -5,12 +5,7 @@ module MountainProject::Rating
   #
   # Returns a Grade instance or nil.
   def self.[](name)
-    System.instances_by_prefix[name.each_char.first].each do |system|
-      grade = system[name]
-      return grade unless grade.nil?
-    end
-
-    nil
+    System.grades_by_name[name]
   end
 end
 

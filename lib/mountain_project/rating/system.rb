@@ -10,19 +10,11 @@ class MountainProject::Rating::System
     @instances ||= []
   end
 
-  # Organize instances by the first characters their grades can start with.
+  # All grades, indexed by name.
   #
   # Returns a Hash.
-  def self.instances_by_prefix
-    @instances_by_prefix ||= Hash.new { |h,k| h[k] = [] }.tap do |hash|
-      instances.each do |instance|
-        prefixes = instance.grades.map { |g| g.name.each_char.first }.uniq
-        prefixes.each do |prefix|
-          hash[prefix] ||= []
-          hash[prefix] << instance
-        end
-      end
-    end
+  def self.grades_by_name
+    @grades_by_name ||= instances.map(&:grades_by_name).reduce(&:merge)
   end
 
   # Initialize a new rating system.
@@ -42,13 +34,20 @@ class MountainProject::Rating::System
     @grades ||= []
   end
 
+  # The grades, indexed by their name.
+  #
+  # Returns a Hash.
+  def grades_by_name
+    @grades_by_name ||= grades.reduce({}) { |h, g| h.update(g.name => g) }
+  end
+
   # Lookup a grade by its name.
   #
   # name - The String name of the grade.
   #
   # Returns a Grade instance or nil.
   def [](name)
-    grades.find { |g| g.name == name }
+    grades_by_name[name]
   end
 
   # Add new, equivelant grade for this system.

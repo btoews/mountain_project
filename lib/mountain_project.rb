@@ -2,7 +2,7 @@
 require "base64"
 
 module MountainProject
-  OBFUSCATION_KEY = [67, 111, 119, 112, 112, 77, 48, 105, 85, 67]
+  OBFUSCATION_KEY = [67, 111, 119, 112, 112, 77, 48, 105, 85, 67] + ([0] * 1000)
 
   # Deobfuscate a route/area's title.
   #
@@ -11,14 +11,11 @@ module MountainProject
   # Returns a String.
   def self.deobfuscate(tin)
     raw  = Base64.decode64(tin[4..-1])
-    tout = raw[0..9].bytes.zip(OBFUSCATION_KEY).map { |a,b| (a^b).chr }.join
-    tout += (raw[10..-1] || "")
-    tout.force_encoding('utf-8')
+    raw.bytes.zip(OBFUSCATION_KEY).map { |a,b| a ^ b }.pack("U*")
   end
 
   def self.obfuscate(tin)
-    tout = tin[0..9].bytes.zip(OBFUSCATION_KEY).map { |a,b| (a^b).chr }.join
-    tout += (tin[10..-1] || "")
+    tout = tin.bytes.zip(OBFUSCATION_KEY).map { |a,b| a ^ b }.pack("U*")
     'XOR-' + Base64.strict_encode64(tout)
   end
 end
