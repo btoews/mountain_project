@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class Climbing::Area < Climbing::Node.new(:title, :id, :parent_id)
+class MountainProject::Area < MountainProject::Node.new(:title, :id, :parent_id)
   map(parent_id: :parentId)
 
   massage(:title) do |raw|
     if raw.start_with?("XOR")
-      Climbing.deobfuscate(raw)
+      MountainProject.deobfuscate(raw)
     else
       raw
     end

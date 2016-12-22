@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Climbing::Rating::System
+class MountainProject::Rating::System
   attr_accessor :default_grade
 
   # A collection of all rating systems.
@@ -59,7 +59,7 @@ class Climbing::Rating::System
   def grade(*names)
     index = grades.size
     names.each do |name|
-      grades << Climbing::Rating::Grade.new(
+      grades << MountainProject::Rating::Grade.new(
         name: name,
         index: index,
         system: self

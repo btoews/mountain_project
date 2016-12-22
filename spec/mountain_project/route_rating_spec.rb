@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-describe Climbing::RouteRating do
+describe MountainProject::RouteRating do
   describe "creating from String" do
     subject { described_class["5.10a R"] }
 
     it "gets all the grades" do
-      expect(subject.grades.first).to eq(Climbing::Rating["5.10a"])
-      expect(subject.grades.last).to eq(Climbing::Rating["R"])
+      expect(subject.grades.first).to eq(MountainProject::Rating["5.10a"])
+      expect(subject.grades.last).to eq(MountainProject::Rating["R"])
     end
   end
 
@@ -38,7 +38,7 @@ describe Climbing::RouteRating do
     it "doesn't work" do
       expect {
         described_class["AI1"] < described_class["5.10a"]
-      }.to raise_error(Climbing::InvalidComparisonError)
+      }.to raise_error(MountainProject::InvalidComparisonError)
     end
   end
 end

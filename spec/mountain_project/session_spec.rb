@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require "tmpdir"
 
-describe Climbing::Session do
+describe MountainProject::Session do
   subject { test_session }
 
   describe "#packages" do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe Climbing::Selection do
+describe MountainProject::Selection do
   let(:session)   { test_session }
   let(:selection) { session.selection }
   let(:nodes)     { selection.send(:nodes) }

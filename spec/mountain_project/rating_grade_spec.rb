@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-describe Climbing::Rating::Grade do
-  let(:five_ten)     { Climbing::Rating::YDS["5.10"] }
-  let(:five_ten_a)   { Climbing::Rating::YDS["5.10a"] }
-  let(:five_ten_b)   { Climbing::Rating::YDS["5.10b"] }
-  let(:five_ten_b_c) { Climbing::Rating::YDS["5.10b/c"] }
-  let(:v0)           { Climbing::Rating::Hueco["V0"] }
+describe MountainProject::Rating::Grade do
+  let(:five_ten)     { MountainProject::Rating::YDS["5.10"] }
+  let(:five_ten_a)   { MountainProject::Rating::YDS["5.10a"] }
+  let(:five_ten_b)   { MountainProject::Rating::YDS["5.10b"] }
+  let(:five_ten_b_c) { MountainProject::Rating::YDS["5.10b/c"] }
+  let(:v0)           { MountainProject::Rating::Hueco["V0"] }
 
   it "has the right name" do
     expect(five_ten.name).to eq("5.10")
@@ -23,6 +23,6 @@ describe Climbing::Rating::Grade do
   it "can't be compared to a grade of a different system" do
     expect {
       five_ten > v0
-    }.to raise_error(Climbing::InvalidComparisonError)
+    }.to raise_error(MountainProject::InvalidComparisonError)
   end
 end

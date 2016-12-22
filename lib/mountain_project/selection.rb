@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Climbing::Selection
+class MountainProject::Selection
   attr_reader :nodes_by_id, :selected_node_ids, :index
 
   # Initialize a new Selection.

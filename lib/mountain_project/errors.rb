@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Climbing
+module MountainProject
   Error                  = Class.new(StandardError)
   ImplementMe            = Class.new(Error)
   InvalidComparisonError = Class.new(Error)

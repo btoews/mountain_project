@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe Climbing::Node do
+describe MountainProject::Node do
   let(:session)   { test_session }
   let(:selection) { session.selection }
   let(:routes)    { selection[node_type: :route] }
@@ -8,7 +8,7 @@ describe Climbing::Node do
 
   describe ".from_hash" do
     subject do
-      Class.new(Climbing::Node.new(:foo, :bar)) do
+      Class.new(MountainProject::Node.new(:foo, :bar)) do
         map(foo: :Foo)
 
         massage(:bar) { |raw| raw.reverse }

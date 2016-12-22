@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require "climbing"
+require "mountain_project"
 require "vcr"
 
 module SpecHelper
@@ -17,7 +17,7 @@ module SpecHelper
   end
 
   def test_session
-    @test_session ||= Climbing::Session.new(
+    @test_session ||= MountainProject::Session.new(
       phone_id:  test_phone_id,
       base_path: test_base_path,
       url:       test_url

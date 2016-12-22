@@ -1,10 +1,10 @@
-# Climbing API Client
+# Mountain Project API Client
 
 ## Installation
 
 ```
-$ git clone https://github.com/mastahyeti/climbing
-$ cd climbing
+$ git clone https://github.com/mastahyeti/mountain_project
+$ cd mountain_project
 $ bundle install
 ```
 

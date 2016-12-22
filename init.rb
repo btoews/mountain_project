@@ -1,12 +1,12 @@
 $:.unshift(File.expand_path(File.join(__FILE__, "../lib")))
 
-require "climbing"
+require "mountain_project"
 
 # R['5.12']
-R = Climbing::RouteRating
+R = MountainProject::RouteRating
 
 def session
-  @session ||= Climbing::Session.new.tap(&:load_data)
+  @session ||= MountainProject::Session.new.tap(&:load_data)
 end
 
 def areas

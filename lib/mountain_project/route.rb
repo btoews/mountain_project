@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Climbing::Route < Climbing::Node.new(:package, :id, :title, :rating, :type, :pitches, :stars, :parent_id, :votes)
+class MountainProject::Route < MountainProject::Node.new(:package, :id, :title, :rating, :type, :pitches, :stars, :parent_id, :votes)
 
   # Fix Hash keys when using Route.from_hash.
   map(parent_id: :parentId)
@@ -8,8 +8,8 @@ class Climbing::Route < Climbing::Node.new(:package, :id, :title, :rating, :type
   map(votes:     :numVotes)
 
   # Fix Hash values when using Route.from_hash.
-  massage(:title)       { |raw| Climbing.deobfuscate(raw) }
-  massage(:rating)      { |raw| Climbing::RouteRating[raw] }
+  massage(:title)       { |raw| MountainProject.deobfuscate(raw) }
+  massage(:rating)      { |raw| MountainProject::RouteRating[raw] }
   massage(:numPitches)  { |raw| raw.to_i }
   massage(:stars)       { |raw| raw.to_f }
   massage(:numVotes)    { |raw| raw.to_i }

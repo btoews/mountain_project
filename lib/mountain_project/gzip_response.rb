@@ -6,7 +6,7 @@ require "zlib"
 # default Accept-Encoding header, which we don't want.
 #
 
-class Climbing::GzipResponse
+class MountainProject::GzipResponse
   GZIP             = "gzip"
   XGZIP            = "application/x-gzip"
   ACCEPT_ENCODING  = "Accept-Encoding"

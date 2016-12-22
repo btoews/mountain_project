@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe Climbing::Route do
+describe MountainProject::Route do
   let(:session)    { test_session }
   let(:selection)  { session.selection }
   let(:area_title) { "Area Two" }
@@ -10,7 +10,7 @@ describe Climbing::Route do
   subject { area }
 
   it "is a Node" do
-    expect(subject).to be_a(Climbing::Node)
+    expect(subject).to be_a(MountainProject::Node)
   end
 
   it "is an area" do

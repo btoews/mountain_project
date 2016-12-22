@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Climbing::Rating::Grade
+class MountainProject::Rating::Grade
   include Comparable
 
   attr_reader :name, :index, :system
@@ -29,8 +29,8 @@ class Climbing::Rating::Grade
   def <=>(other)
     other = system[other] if other.is_a?(String)
 
-    unless other.is_a?(Climbing::Rating::Grade) && system == other.system
-      raise Climbing::InvalidComparisonError
+    unless other.is_a?(MountainProject::Rating::Grade) && system == other.system
+      raise MountainProject::InvalidComparisonError
     end
 
     index <=> other.index

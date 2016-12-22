@@ -5,7 +5,7 @@ require "securerandom"
 require "faraday"
 require "faraday_middleware"
 
-class Climbing::Session
+class MountainProject::Session
   attr_reader :nodes, :selection, :url, :phone_id, :base_path, :packages
 
   DEFAULT_URL  = "https://www.mountainproject.com/api.php"
@@ -67,7 +67,7 @@ class Climbing::Session
       ta_id = make_id(ta_title)
       packages[ta_title] = {}
 
-      nodes << Climbing::Area.from_hash(ta_hash.merge(
+      nodes << MountainProject::Area.from_hash(ta_hash.merge(
         "id"       => ta_id,
         "parentId" => nil
       ))
@@ -83,17 +83,17 @@ class Climbing::Session
 
           p_data["areas"].each do |a_hash|
             a_hash["parentId"] = ta_id if a_hash["parentId"] == 0
-            nodes << Climbing::Area.from_hash(a_hash)
+            nodes << MountainProject::Area.from_hash(a_hash)
           end
 
           p_data["routes"].each do |r_hash|
-            nodes << Climbing::Route.from_hash(r_hash)
+            nodes << MountainProject::Route.from_hash(r_hash)
           end
         end
       end
     end
 
-    @selection = Climbing::Selection.new(nodes: nodes)
+    @selection = MountainProject::Selection.new(nodes: nodes)
   end
 
   # Make a fake ID for an area, based on its name.
@@ -143,7 +143,7 @@ class Climbing::Session
   # Returns a Faraday::Connection instance.
   def http
     @http ||= Faraday::Connection.new(url: url) do |faraday|
-      faraday.use Climbing::GzipResponse
+      faraday.use MountainProject::GzipResponse
       faraday.use FaradayMiddleware::FollowRedirects
 
       # Excon doesn't send extra request headers.

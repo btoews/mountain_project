@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe Climbing::Route do
+describe MountainProject::Route do
   let(:session)   { test_session }
   let(:selection) { session.selection }
   let(:routes)    { selection[node_type: :route] }
@@ -9,7 +9,7 @@ describe Climbing::Route do
   subject { route }
 
   it "is a Node" do
-    expect(subject).to be_a(Climbing::Node)
+    expect(subject).to be_a(MountainProject::Node)
   end
 
   it "is a route" do
@@ -41,7 +41,7 @@ describe Climbing::Route do
   end
 
   it "has a rating" do
-    expect(subject.rating).to eq(Climbing::RouteRating["5.10b/c"])
+    expect(subject.rating).to eq(MountainProject::RouteRating["5.10b/c"])
   end
 
   it "converts to a nice string" do

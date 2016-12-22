@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require "base64"
 
-module Climbing
+module MountainProject
   OBFUSCATION_KEY = [67, 111, 119, 112, 112, 77, 48, 105, 85, 67]
 
   # Deobfuscate a route/area's title.
@@ -23,12 +23,12 @@ module Climbing
   end
 end
 
-require "climbing/errors"
-require "climbing/gzip_response"
-require "climbing/rating"
-require "climbing/route_rating"
-require "climbing/selection"
-require "climbing/node"
-require "climbing/route"
-require "climbing/area"
-require "climbing/session"
+require "mountain_project/errors"
+require "mountain_project/gzip_response"
+require "mountain_project/rating"
+require "mountain_project/route_rating"
+require "mountain_project/selection"
+require "mountain_project/node"
+require "mountain_project/route"
+require "mountain_project/area"
+require "mountain_project/session"

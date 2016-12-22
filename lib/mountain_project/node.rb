@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require "terminal-table"
 
-class Climbing::Node < Struct
+class MountainProject::Node < Struct
   # Hash of corrections for hash keys when using Node.from_hash.
   #
   # Returns a Hash, mapping "Struct field" => "Hash key"
@@ -96,7 +96,7 @@ class Climbing::Node < Struct
   #
   # Returns a Symbol.
   def node_type
-    raise Climbing::ImplementMe
+    raise MountainProject::ImplementMe
   end
 
   # Try getting the value of a field that may or may not exist in thie Node.
@@ -143,7 +143,7 @@ class Climbing::Node < Struct
           # areas[title: 'Colorado']
           this_value == value
         end
-      rescue Climbing::InvalidComparisonError
+      rescue MountainProject::InvalidComparisonError
         false
       end
     end

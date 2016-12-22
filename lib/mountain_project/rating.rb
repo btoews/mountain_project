@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Climbing::Rating
+module MountainProject::Rating
   # Lookup a grade by its name.
   #
   # Returns a Grade instance or nil.
@@ -14,10 +14,10 @@ module Climbing::Rating
   end
 end
 
-require "climbing/rating/grade"
-require "climbing/rating/system"
+require "mountain_project/rating/grade"
+require "mountain_project/rating/system"
 
-Climbing::Rating::YDS = Climbing::Rating::System.new do
+MountainProject::Rating::YDS = MountainProject::Rating::System.new do
   grade("4th")
   grade("Easy 5th")
   (0..15).each do |number|
@@ -37,7 +37,7 @@ Climbing::Rating::YDS = Climbing::Rating::System.new do
   end
 end
 
-Climbing::Rating::Hueco = Climbing::Rating::System.new do
+MountainProject::Rating::Hueco = MountainProject::Rating::System.new do
   grade("V-easy")
   (0..16).each do |number|
     grade("V#{number}-")
@@ -47,7 +47,7 @@ Climbing::Rating::Hueco = Climbing::Rating::System.new do
   end
 end
 
-Climbing::Rating::WaterIce = Climbing::Rating::System.new do
+MountainProject::Rating::WaterIce = MountainProject::Rating::System.new do
   (1..8).each do |number|
     grade("WI#{number}-")
     grade("WI#{number}")
@@ -56,7 +56,7 @@ Climbing::Rating::WaterIce = Climbing::Rating::System.new do
   end
 end
 
-Climbing::Rating::AlpineIce = Climbing::Rating::System.new do
+MountainProject::Rating::AlpineIce = MountainProject::Rating::System.new do
   (1..6).each do |number|
     grade("AI#{number}-")
     grade("AI#{number}")
@@ -65,7 +65,7 @@ Climbing::Rating::AlpineIce = Climbing::Rating::System.new do
   end
 end
 
-Climbing::Rating::Mixed = Climbing::Rating::System.new do
+MountainProject::Rating::Mixed = MountainProject::Rating::System.new do
   (1..11).each do |number|
     grade("M#{number}-")
     grade("M#{number}")
@@ -74,7 +74,7 @@ Climbing::Rating::Mixed = Climbing::Rating::System.new do
   end
 end
 
-Climbing::Rating::Aid = Climbing::Rating::System.new do
+MountainProject::Rating::Aid = MountainProject::Rating::System.new do
   (0..5).each do |number|
     grade("A#{number}-", "C#{number}-")
     grade("A#{number}", "C#{number}")
@@ -83,7 +83,7 @@ Climbing::Rating::Aid = Climbing::Rating::System.new do
   end
 end
 
-Climbing::Rating::Protection = Climbing::Rating::System.new do
+MountainProject::Rating::Protection = MountainProject::Rating::System.new do
   grade("G")
   grade("PG")
   grade("PG13")

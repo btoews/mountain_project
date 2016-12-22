@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe Climbing do
+describe MountainProject do
   let(:short)     { "foo" }
   let(:short_obf) { "XOR-JQAY" }
   let(:long)      { "foofoofoofoofoofoofoofoofoo" }

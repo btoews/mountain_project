@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Climbing::RouteRating
+class MountainProject::RouteRating
   include Comparable
 
   attr_reader :grades
@@ -11,7 +11,7 @@ class Climbing::RouteRating
   #
   # Returns a new RouteRating instance.
   def self.[](raw)
-    grades = raw.split(" ").map { |r| Climbing::Rating[r] }.compact
+    grades = raw.split(" ").map { |r| MountainProject::Rating[r] }.compact
     new(grades: grades)
   end
 
@@ -67,7 +67,7 @@ class Climbing::RouteRating
       end
     end
 
-    raise Climbing::InvalidComparisonError
+    raise MountainProject::InvalidComparisonError
   end
 
   # Represent as a String.
