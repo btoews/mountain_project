@@ -1,5 +1,21 @@
 # Climbing API Client
 
+## Installation
+
+```
+$ git clone https://github.com/mastahyeti/climbing
+$ cd climbing
+$ bundle install
+```
+
+## Usage
+
+To run the commands from the examples bellow, first launch `mp-shell`:
+
+```
+$ bin/mp-shell
+```
+
 ## Examples
 
 ### Finding packages to download
